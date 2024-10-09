@@ -23,6 +23,7 @@ function App() {
       <Combobox />
 
       <Form 
+      data = {data}
       setData={setData}
       />
     </>
