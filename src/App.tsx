@@ -31,10 +31,19 @@ function App() {
         dispatch={dispatch}
       />
 
-      <div className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto">
-      <Cards />
+      
+        {state.todoList.map(todo => (
+          <div className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto">
+          <Cards
+          key={todo.id}
+          title = {todo.title}
+          status = {todo.status}
+          />
+          </div>
+        ))}
+      
         
-      </div>
+      
     </>
   );
 }
