@@ -1,20 +1,15 @@
-import { v4 as uuid} from 'uuid'
 import { TodoFormData } from "../types/types";
 
 type ButtonsProps = {
-  setData: React.Dispatch<React.SetStateAction<TodoFormData>>;
+  formInitialState : TodoFormData
+  setTodo: React.Dispatch<React.SetStateAction<TodoFormData>>;
 };
 
-export const Buttons = ({ setData }: ButtonsProps) => {
+export const Buttons = ({formInitialState, setTodo }: ButtonsProps) => {
   const clearForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    setData((prevData) => ({
-      ...prevData,
-      id : uuid(),
-      title: "",
-      status: 1,
-    }));
+    setTodo(formInitialState);
   };
 
   return (

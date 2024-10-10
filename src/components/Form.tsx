@@ -1,27 +1,44 @@
 import { options } from "../data/data";
+import { todoAction } from "../reducers/todoReducer";
 import { TodoFormData } from "../types/types";
 import { Buttons } from "./Buttons";
 
 type FormProps = {
-    data : TodoFormData
-   setData: React.Dispatch<React.SetStateAction<TodoFormData>>
-}
+  todo: TodoFormData;
+  setTodo: React.Dispatch<React.SetStateAction<TodoFormData>>;
+  formInitialState : TodoFormData
+  dispatch: React.Dispatch<todoAction>;
+};
 
-export const Form = ({data, setData}: FormProps) => {
+export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const isNumberField = ["status"].includes(e.target.id);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-     
-      const isNumberField = ["status"].includes(e.target.id)
+    setTodo({
+      ...todo,
+      [e.target.id]: isNumberField ? +e.target.value : e.target.value,
+    });
+  };
 
-        setData({
-            ...data,
-            [e.target.id] :  isNumberField ? +e.target.value : e.target.value
-           })
-        
-    }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch({ type: "save-todo", payload: { newTodo: todo } });
+
+    setTodo(formInitialState)
+  };
+
+
 
   return (
-    <form className="bg-slate-100 p-5 mt-3 rounded-md flex flex-col max-w-[60%] mx-auto gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-slate-100 p-5 mt-3 rounded-md flex flex-col max-w-[60%] mx-auto gap-4"
+    >
       <legend className="text-lg font-bold">Add Todo</legend>
       <div className="grid grid-cols-1 gap-1">
         <label htmlFor="title">Title</label>
@@ -30,7 +47,7 @@ export const Form = ({data, setData}: FormProps) => {
           className="border-2 border-[#e1e1e1] p-2"
           type="text"
           onChange={handleChange}
-          value={data.title}
+          value={todo.title}
         />
       </div>
 
@@ -40,17 +57,17 @@ export const Form = ({data, setData}: FormProps) => {
           id="status"
           className="border-2 border-[#e1e1e1] p-2 rounded-md w-30"
           onChange={handleChange}
-          value={data.status}
+          value={todo.status}
         >
           {options.map((option) => (
-            <option key={option.id} value={option.id}>{option.name}</option>
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
           ))}
         </select>
       </div>
 
-      <Buttons 
-      setData = {setData}
-      />
+      <Buttons formInitialState = {formInitialState} setTodo={setTodo} />
     </form>
   );
 };

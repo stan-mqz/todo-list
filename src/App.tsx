@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { v4 as uuid} from 'uuid'
 import { Combobox } from "./components/Combobox";
 import { Form } from "./components/Form";
 import { Header } from "./components/Header";
 import { TodoFormData } from "./types/types";
+import { todoReducer , initialState } from "./reducers/todoReducer";
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
     status: 1
   }
 
-  const [data, setData] = useState(formInitialState);
+  const [todo, setTodo] = useState(formInitialState);
+
+  const [state, dispatch] = useReducer(todoReducer, initialState)
 
 
 
@@ -25,8 +28,10 @@ function App() {
       <Combobox />
 
       <Form 
-      data = {data}
-      setData={setData}
+      todo = {todo}
+      setTodo={setTodo}
+      formInitialState = {formInitialState}
+      dispatch = {dispatch}
       />
     </>
   );
