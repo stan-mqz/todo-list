@@ -11,16 +11,18 @@ export const Form = ({data, setData}: FormProps) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
      
+      const isNumberField = ["status"].includes(e.target.id)
+
         setData({
             ...data,
-            [e.target.id] : e.target.value
+            [e.target.id] :  isNumberField ? +e.target.value : e.target.value
            })
         
     }
 
   return (
     <form className="bg-slate-100 p-5 mt-3 rounded-md flex flex-col max-w-[60%] mx-auto gap-4">
-      <legend>Add Todo</legend>
+      <legend className="text-lg font-bold">Add Todo</legend>
       <div className="grid grid-cols-1 gap-1">
         <label htmlFor="title">Title</label>
         <input

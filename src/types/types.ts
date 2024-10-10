@@ -4,6 +4,7 @@ export type OptionsForm = {
 };
 
 export type TodoFormData = {
+  id : string
   title: string;
-  status: string;
+  status: number;
 };

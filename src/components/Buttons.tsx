@@ -1,3 +1,4 @@
+import { v4 as uuid} from 'uuid'
 import { TodoFormData } from "../types/types";
 
 type ButtonsProps = {
@@ -10,8 +11,9 @@ export const Buttons = ({ setData }: ButtonsProps) => {
 
     setData((prevData) => ({
       ...prevData,
+      id : uuid(),
       title: "",
-      status: "",
+      status: 1,
     }));
   };
 
