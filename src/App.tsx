@@ -36,7 +36,7 @@ function App() {
           <div key={todo.id} className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto">
           <Cards
           title = {todo.title}
-          status = {todo.status}
+          state = {state}
           dispatch={dispatch}
           />
           </div>

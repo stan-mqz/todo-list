@@ -29,8 +29,18 @@ export const todoReducer = (
     }
 
     if (action.type === 'set-status') {
+
+      let updatedStatus = state.todoList.map(todo => ({
+        ...todo, 
+        status: todo.status === 1 ? 2 : 1 
+      }));
+
+       
+  
+
       return {
         ...state,
+        todoList :  updatedStatus,
         todoStatus : !state.todoStatus
       }
     }
