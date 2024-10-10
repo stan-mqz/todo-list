@@ -13,6 +13,7 @@ export const Buttons = ({formInitialState, setTodo, isValidForm}: ButtonsProps) 
     setTodo(formInitialState);
   };
 
+  
   return (
     <div className="flex flex-col items-center sm:flex-row gap-2">
       <button 
