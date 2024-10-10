@@ -52,6 +52,7 @@ export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) =
           type="text"
           onChange={handleChange}
           value={todo.title}
+          placeholder="Eg: Go to the gym"
         />
       </div>
 
