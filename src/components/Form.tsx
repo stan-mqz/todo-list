@@ -32,7 +32,11 @@ export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) =
     setTodo(formInitialState)
   };
 
+  const isValidForm = () => {
+    const { title } = todo
 
+    return title.trim() !== ''
+  }
 
   return (
     <form
@@ -67,7 +71,7 @@ export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) =
         </select>
       </div>
 
-      <Buttons formInitialState = {formInitialState} setTodo={setTodo} />
+      <Buttons formInitialState = {formInitialState} setTodo={setTodo} isValidForm = {isValidForm} />
     </form>
   );
 };
