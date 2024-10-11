@@ -1,26 +1,28 @@
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { todoAction } from "../reducers/todoReducer";
+import { TodoFormData } from "../types/types";
 
 
 type CardsProps = {
   title: string;
   checked : boolean
   toggleState :  () => void
+  todo : TodoFormData
+  dispatch : React.Dispatch<todoAction>
 };
 
 export const Cards = ({
   title,
   checked,
-  toggleState
+  todo,
+  toggleState,
+  dispatch
 }: CardsProps) => {
 
-  // const [checked, setChecked] = useState(false)
 
-  // const isChecked = () => {
-    
-
-  //   setChecked(!checked)
-
-  // };
+  const setTodoData = () => {
+    dispatch({ type: "set-activeId", payload: { id : todo.id } })
+  }
 
   
   return (
@@ -34,11 +36,11 @@ export const Cards = ({
         >
           {title}
         </p>
-        <p className="text-base font-bold"></p>
+      
       </div>
 
       <div className="flex gap-2">
-        <PencilSquareIcon className="size-6 text-black cursor-pointer" />
+        <PencilSquareIcon onClick={setTodoData}  className="size-6 text-black cursor-pointer" />
         <TrashIcon className="size-6 text-black cursor-pointer" />
       </div>
     </div>

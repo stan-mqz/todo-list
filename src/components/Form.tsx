@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { options } from "../data/data";
-import { todoAction } from "../reducers/todoReducer";
+import { todoAction, todoState } from "../reducers/todoReducer";
 import { TodoFormData } from "../types/types";
 import { Buttons } from "./Buttons";
 
@@ -7,10 +8,19 @@ type FormProps = {
   todo: TodoFormData;
   setTodo: React.Dispatch<React.SetStateAction<TodoFormData>>;
   formInitialState : TodoFormData
+  state : todoState
   dispatch: React.Dispatch<todoAction>;
 };
 
-export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) => {
+export const Form = ({ todo, setTodo, formInitialState, state, dispatch }: FormProps) => {
+
+  useEffect(() => {
+    if (state.activeId) {
+      const updatedTodo = state.todoList.filter(todo => todo.id === state.activeId)[0]
+      setTodo(updatedTodo)
+    }
+  }, [state.activeId])
+
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -27,8 +37,9 @@ export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) =
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch({ type: "save-todo", payload: { newTodo : todo } });
-
+    dispatch({ type: "save-todo", payload: { newTodo : todo } })
+    dispatch({type: 'set-activeId', payload: {id : ''}})
+   
     setTodo(formInitialState)
   };
 

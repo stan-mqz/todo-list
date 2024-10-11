@@ -3,30 +3,42 @@ import { TodoFormData } from "../types/types";
 export type todoState = {
   todoList: TodoFormData[];
   todoStatus: boolean;
+  activeId : TodoFormData["id"]
 };
 
 export const initialState: todoState = {
   todoList: [],
   todoStatus: false,
+  activeId : ''
 };
 
 export type todoAction =
   | { type: "save-todo"; payload: { newTodo: TodoFormData } }
-  | { type: "set-status"; payload: { id: string } };
+  | { type: "set-status"; payload: {id: TodoFormData["id"]} }
+  | { type: "set-activeId"; payload: {id: TodoFormData["id"]} }
 
 export const todoReducer = (state = initialState, action: todoAction) => {
   if (action.type === "save-todo") {
+
+    let updatedTodo = []
+
+    if (state.activeId) {
+      updatedTodo = state.todoList.map(todo => todo.id === state.activeId 
+        ? action.payload.newTodo 
+        : todo
+      )
+    } else {
+      updatedTodo = [...state.todoList, action.payload.newTodo]
+    }
+
     return {
       ...state,
-      todoList: [...state.todoList, action.payload.newTodo],
+      todoList: updatedTodo,
     };
   }
 
   if (action.type === "set-status") {
-    // let updatedStatus = state.todoList.map(todo => ({
-    //   ...todo,
-    //   status: todo.status === 1 ? 2 : 1
-    // }));
+
 
     let updatedStatus = state.todoList.map((todo) =>
       todo.id === action.payload.id
@@ -43,6 +55,16 @@ export const todoReducer = (state = initialState, action: todoAction) => {
       todoStatus: !state.todoStatus,
     };
   }
+
+  if (action.type === 'set-activeId') {
+    
+    return {
+      ...state,
+      activeId: action.payload.id
+    }
+  }
+
+
 
   return state;
 };

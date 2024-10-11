@@ -34,6 +34,7 @@ function App() {
         todo={todo}
         setTodo={setTodo}
         formInitialState={formInitialState}
+        state={state}
         dispatch={dispatch}
       />
 
@@ -46,7 +47,8 @@ function App() {
           title={todo.title} 
           checked={todo.status === 2}
           toggleState={() => toggleState(todo.id)}
-          
+          todo={todo}
+          dispatch = {dispatch}
           />
         </div>
       ))}
