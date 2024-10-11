@@ -1,29 +1,32 @@
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 
 
 type CardsProps = {
   title: string;
+  checked : boolean
+  toggleState :  () => void
 };
 
 export const Cards = ({
   title,
+  checked,
+  toggleState
 }: CardsProps) => {
 
-  const [checked, setChecked] = useState(false)
+  // const [checked, setChecked] = useState(false)
 
-  const isChecked = () => {
+  // const isChecked = () => {
     
 
-    setChecked(!checked)
+  //   setChecked(!checked)
 
-  };
+  // };
 
   
   return (
     <div className="flex justify-between items-center bg-white p-5">
       <div className="flex gap-2">
-        <input type="checkbox" onChange={isChecked} checked={checked}  />
+        <input type="checkbox" onChange={toggleState} checked={checked}  />
         <p
           className={`text-base font-bold ${
             checked ? "line-through" : ""

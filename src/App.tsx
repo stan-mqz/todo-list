@@ -18,6 +18,10 @@ function App() {
  
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
+  const toggleState = (id: string) => {
+    dispatch({type: 'set-status', payload : {id}})
+  }
+
 
 
   return (
@@ -36,9 +40,14 @@ function App() {
       {state.todoList.map((todo) => (
         <div
           key={todo.id}
-          className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto"
+          className="bg-slate-100 p-2 mt-3 mb-3 max-w-[60%] mx-auto"
         >
-          <Cards title={todo.title} />
+          <Cards 
+          title={todo.title} 
+          checked={todo.status === 2}
+          toggleState={() => toggleState(todo.id)}
+          
+          />
         </div>
       ))}
     </>

@@ -27,7 +27,7 @@ export const Form = ({ todo, setTodo, formInitialState, dispatch }: FormProps) =
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch({ type: "save-todo", payload: { newTodo: todo } });
+    dispatch({ type: "save-todo", payload: { newTodo : todo } });
 
     setTodo(formInitialState)
   };
