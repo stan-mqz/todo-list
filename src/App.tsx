@@ -15,8 +15,10 @@ function App() {
   };
 
   const [todo, setTodo] = useState(formInitialState);
-
+ 
   const [state, dispatch] = useReducer(todoReducer, initialState);
+
+
 
   return (
     <>
@@ -31,19 +33,14 @@ function App() {
         dispatch={dispatch}
       />
 
-      
-        {state.todoList.map(todo => (
-          <div key={todo.id} className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto">
-          <Cards
-          title = {todo.title}
-          state = {state}
-          dispatch={dispatch}
-          />
-          </div>
-        ))}
-      
-        
-      
+      {state.todoList.map((todo) => (
+        <div
+          key={todo.id}
+          className="bg-slate-100 p-2 mt-3 max-w-[60%] mx-auto"
+        >
+          <Cards title={todo.title} />
+        </div>
+      ))}
     </>
   );
 }

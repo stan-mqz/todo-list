@@ -22,9 +22,11 @@ export const todoReducer = (
   ) => {
    
     if (action.type === 'save-todo') {
+
+   
         return {
-            ...state,
-            todoList : [...state.todoList, action.payload.newTodo]
+          ...state,
+          todoList : [...state.todoList, action.payload.newTodo]
         }
     }
 

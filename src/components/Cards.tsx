@@ -1,32 +1,32 @@
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { todoAction, todoState } from "../reducers/todoReducer";
+import { useState } from "react";
 
 
 type CardsProps = {
   title: string;
-  state: todoState;
-  dispatch: React.Dispatch<todoAction>;
 };
 
 export const Cards = ({
   title,
-  state,
-  dispatch,
 }: CardsProps) => {
+
+  const [checked, setChecked] = useState(false)
+
   const isChecked = () => {
-    dispatch({ type: "set-status" });
+    
+
+    setChecked(!checked)
 
   };
 
   
-
   return (
     <div className="flex justify-between items-center bg-white p-5">
       <div className="flex gap-2">
-        <input type="checkbox" onChange={isChecked} />
+        <input type="checkbox" onChange={isChecked} checked={checked}  />
         <p
           className={`text-base font-bold ${
-            state.todoStatus ? "line-through" : ""
+            checked ? "line-through" : ""
           }`}
         >
           {title}
