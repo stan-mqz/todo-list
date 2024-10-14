@@ -83,7 +83,7 @@ export const Form = ({ todo, setTodo, formInitialState, state, dispatch }: FormP
         </select>
       </div>
 
-      <Buttons formInitialState = {formInitialState} setTodo={setTodo} isValidForm = {isValidForm} />
+      <Buttons formInitialState = {formInitialState} setTodo={setTodo} isValidForm = {isValidForm}  dispatch={dispatch}/>
     </form>
   );
 };

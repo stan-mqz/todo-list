@@ -24,6 +24,10 @@ export const Cards = ({
     dispatch({ type: "set-activeId", payload: { id : todo.id } })
   }
 
+  const deleteTodo = () => {
+    dispatch({type : 'delete-todo', payload: {id: todo.id}})
+  }
+
   
   return (
     <div className="flex justify-between items-center bg-white p-5">
@@ -41,7 +45,7 @@ export const Cards = ({
 
       <div className="flex gap-2">
         <PencilSquareIcon onClick={setTodoData}  className="size-6 text-black cursor-pointer" />
-        <TrashIcon className="size-6 text-black cursor-pointer" />
+        <TrashIcon onClick={deleteTodo} className="size-6 text-black cursor-pointer" />
       </div>
     </div>
   );

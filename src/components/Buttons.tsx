@@ -1,16 +1,20 @@
+import { todoAction } from "../reducers/todoReducer";
 import { TodoFormData } from "../types/types";
 
 type ButtonsProps = {
   formInitialState : TodoFormData
   setTodo: React.Dispatch<React.SetStateAction<TodoFormData>>;
   isValidForm: () => boolean
+  dispatch: React.Dispatch<todoAction>;
 };
 
-export const Buttons = ({formInitialState, setTodo, isValidForm}: ButtonsProps) => {
+export const Buttons = ({formInitialState, setTodo, isValidForm, dispatch}: ButtonsProps) => {
   const clearForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     setTodo(formInitialState);
+
+    dispatch({type: 'set-activeId', payload: {id : ''}})
   };
 
   

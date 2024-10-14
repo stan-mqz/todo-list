@@ -16,6 +16,7 @@ export type todoAction =
   | { type: "save-todo"; payload: { newTodo: TodoFormData } }
   | { type: "set-status"; payload: {id: TodoFormData["id"]} }
   | { type: "set-activeId"; payload: {id: TodoFormData["id"]} }
+  | { type: "delete-todo"; payload: {id: TodoFormData["id"]} }
 
 export const todoReducer = (state = initialState, action: todoAction) => {
   if (action.type === "save-todo") {
@@ -61,6 +62,16 @@ export const todoReducer = (state = initialState, action: todoAction) => {
     return {
       ...state,
       activeId: action.payload.id
+    }
+  }
+
+  if (action.type === 'delete-todo') {
+
+    const deletedTodo = state.todoList.filter(todo => todo.id !== action.payload.id)
+
+    return {
+      ...state,
+      todoList : deletedTodo
     }
   }
 
