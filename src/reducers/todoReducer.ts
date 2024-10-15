@@ -11,7 +11,7 @@ export const initialState: todoState = {
   todoList: [],
   todoStatus: false,
   activeId : '',
-  selectedFilter : 1
+  selectedFilter : 0
 };
 
 export type todoAction =
@@ -80,21 +80,12 @@ export const todoReducer = (state = initialState, action: todoAction) => {
 
   if (action.type === 'filter-todo') {
 
-    let filteredTodo : TodoFormData[] = []
-
-    if (action.payload.filter === 1) {
-      filteredTodo = state.todoList
-    } else if(action.payload.filter === 2) {
-      filteredTodo = state.todoList.filter(todo => todo.status === 1)
-    } else {
-      filteredTodo = state.todoList.filter(todo => todo.status === 2)
-    }
 
     return {
       ...state,
-      todoList : [...filteredTodo],
       selectedFilter : action.payload.filter
     }
+
   }
 
 

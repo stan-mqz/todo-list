@@ -23,13 +23,14 @@ function App() {
   }
 
 
+  const filteredTodo = state.selectedFilter !== 0 ? state.todoList.filter(todo => todo.status === state.selectedFilter) : state.todoList
+
 
   return (
     <>
       <Header />
 
-      <Combobox 
-      state = {state}
+      <Combobox   
       dispatch = {dispatch}
       />
 
@@ -41,7 +42,7 @@ function App() {
         dispatch={dispatch}
       />
 
-      {state.todoList.map((todo) => (
+      {filteredTodo.map((todo) => (
         <div
           key={todo.id}
           className="bg-slate-100 p-2 mt-3 mb-3 max-w-[60%] mx-auto"

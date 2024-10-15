@@ -1,17 +1,17 @@
 import { filterOptions } from "../data/data";
-import { todoAction, todoState } from "../reducers/todoReducer";
+import { todoAction } from "../reducers/todoReducer";
 
 type ComboboxProps = {
-  state: todoState;
   dispatch: React.Dispatch<todoAction>;
 };
 
-export const Combobox = ({ state, dispatch }: ComboboxProps) => {
+export const Combobox = ({  dispatch }: ComboboxProps) => {
 
 
   const selectFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({type :'filter-todo', payload: {filter : +e.target.value}})
   };
+
 
   return (
     <div className="flex justify-end max-w-[60%] mx-auto mt-6">
