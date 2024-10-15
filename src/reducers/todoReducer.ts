@@ -4,12 +4,14 @@ export type todoState = {
   todoList: TodoFormData[];
   todoStatus: boolean;
   activeId : TodoFormData["id"]
+  selectedFilter : number
 };
 
 export const initialState: todoState = {
   todoList: [],
   todoStatus: false,
-  activeId : ''
+  activeId : '',
+  selectedFilter : 1
 };
 
 export type todoAction =
@@ -17,6 +19,7 @@ export type todoAction =
   | { type: "set-status"; payload: {id: TodoFormData["id"]} }
   | { type: "set-activeId"; payload: {id: TodoFormData["id"]} }
   | { type: "delete-todo"; payload: {id: TodoFormData["id"]} }
+  | { type: "filter-todo"; payload: {filter : number} }
 
 export const todoReducer = (state = initialState, action: todoAction) => {
   if (action.type === "save-todo") {
@@ -75,6 +78,14 @@ export const todoReducer = (state = initialState, action: todoAction) => {
     }
   }
 
+  if (action.type === 'filter-todo') {
+
+
+    return {
+      ...state,
+      selectedFilter : action.payload.filter
+    }
+  }
 
 
   return state;

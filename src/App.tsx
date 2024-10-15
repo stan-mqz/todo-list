@@ -28,7 +28,10 @@ function App() {
     <>
       <Header />
 
-      <Combobox />
+      <Combobox 
+      state = {state}
+      dispatch = {dispatch}
+      />
 
       <Form
         todo={todo}
