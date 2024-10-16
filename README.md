@@ -1,5 +1,7 @@
 # Todo List App
 
+[Live Demo](https://stan-mqz-todoapp.netlify.app/)
+
 This Todo List App is a simple task management application built using **React** with features like adding, editing, deleting, and filtering tasks. The app keeps track of tasks and their statuses (incomplete or complete), and allows users to filter tasks based on their status. It provides a clean and responsive UI with the flexibility to manage daily todos effectively.
 
 ## Features
