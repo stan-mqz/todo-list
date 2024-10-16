@@ -26,7 +26,8 @@ export const Cards = ({
   };
 
   return (
-    <div className="flex justify-between items-center bg-white p-5">
+
+    <div className="flex flex-col gap-3 sm:flex-row justify-between items-center bg-white p-5">
       <div className="flex gap-2">
         <input type="checkbox" onChange={toggleState} checked={checked} />
         <p className={`text-base font-bold ${checked ? "line-through" : ""}`}>
