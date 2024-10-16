@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Todo List App is a simple task management application built using **React** with features like adding, editing, deleting, and filtering tasks. The app keeps track of tasks and their statuses (incomplete or complete), and allows users to filter tasks based on their status. It provides a clean and responsive UI with the flexibility to manage daily todos effectively.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add New Tasks:** Users can input a task name and set its status to "incomplete" or "complete".
+- **Edit Tasks:** Users can select an existing task, edit its title and status.
+- **Delete Tasks:** Users can remove tasks from the list.
+- **Task Status Toggle:** Users can toggle the status of a task between "incomplete" and "complete".
+- **Filter Tasks:** Users can filter tasks based on their status, allowing them to view only "incomplete" or "complete" tasks.
+- **Form Reset:** Users can cancel a task in the middle of the creation process, resetting the form.
+- **Responsive Design:** The layout adjusts well to different screen sizes.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **React**: Used for building the UI components and managing state.
+- **React Hooks (useState, useReducer)**: For state management within functional components.
+- **TypeScript**: For static typing and enhancing the development experience.
+- **UUID**: For generating unique IDs for tasks.
+- **Auto-animate**: For smooth animations when adding, updating, or removing tasks.
+- **CSS (TailwindCSS)**: Used for styling and ensuring a responsive design.
